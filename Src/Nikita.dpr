@@ -110,7 +110,8 @@ uses
   OutDocumentServicesImpl1 in 'OutDocumentServicesImpl1.pas',
   UQueueProc in 'UQueueProc.pas',
   UFrmMrkActions in 'UFrmMrkActions.pas' {FrmMrkActions},
-  MoveDocumentServicesImpl1 in 'MoveDocumentServicesImpl1.pas';
+  MoveDocumentServicesImpl1 in 'MoveDocumentServicesImpl1.pas',
+  UFrmListZakaz in 'UFrmListZakaz.pas' {FrmListZakaz};
 
 //  StringUtils in 'ShtrihDrv\StringUtils.pas';
 

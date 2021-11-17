@@ -237,7 +237,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ModelSupport_Nikita\UDocumentsClasses\default.txvpck" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="ModelSupport_Nikita\UNsiClass\default.txaPackage" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -249,7 +249,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ModelSupport_Nikita\UNsiClass\default.txaPackage" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="ModelSupport_Nikita\UDocumentsClasses\default.txvpck" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -958,6 +958,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="MoveDocumentServicesImpl1.pas"/>
+        <DCCReference Include="UFrmListZakaz.pas">
+            <Form>FrmListZakaz</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <None Include="master.xsd"/>
         <None Include="ModelSupport_Nikita\default.txaPackage"/>
         <None Include="ModelSupport_Nikita\default.txvpck"/>
