@@ -4,7 +4,6 @@ inherited FrmMoveDocList: TFrmMoveDocList
   Caption = #1046#1091#1088#1085#1072#1083' '#1089#1082#1083#1072#1076#1089#1082#1080#1093' '#1076#1086#1082#1091#1084#1077#1085#1090#1086#1074
   ClientHeight = 360
   ClientWidth = 1011
-  ExplicitLeft = -27
   ExplicitWidth = 1027
   ExplicitHeight = 398
   PixelsPerInch = 96
@@ -526,7 +525,8 @@ inherited FrmMoveDocList: TFrmMoveDocList
       '    :F_EXT_BASE,'
       '    :F_EXT_ID,'
       '    :F_DOC_TYPE,'
-      '    :F_USER) ')
+      '    :F_USER,'
+      '    :F_DOP_INFO) ')
     Transaction = DM.pFIBTransaction
     Database = DM.pFIBDatabase
     DefaultFormats.DateTimeDisplayFormat = 'dd.mm.yyyy hh:mm'

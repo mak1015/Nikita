@@ -1,10 +1,24 @@
 inherited FrmListZakaz: TFrmListZakaz
   Caption = #1046#1091#1088#1085#1072#1083' '#1079#1072#1082#1072#1079#1086#1074
+  ClientHeight = 518
+  ClientWidth = 965
+  ExplicitWidth = 981
+  ExplicitHeight = 556
   PixelsPerInch = 96
   TextHeight = 13
+  inherited RzStatusBar1: TRzStatusBar
+    Top = 499
+    Width = 965
+  end
   inherited Panel3: TPanel
+    Width = 965
+    Height = 499
+    ExplicitWidth = 965
+    ExplicitHeight = 499
     inherited RzToolbar: TRzToolbar
+      Width = 963
       Height = 25
+      ExplicitWidth = 963
       ExplicitHeight = 25
       ToolbarControls = (
         BtnNew

@@ -183,6 +183,8 @@ begin
       dsImportDoc.ParamByName('f_number').Value := NewDoc.Text;
       NewDoc := NodeDocs.ChildNodes['wbDate'];
       dsImportDoc.ParamByName('f_date').Value := NewDoc.Text;
+      NewDoc := NodeDocs.ChildNodes['wbDopInfo'];
+      dsImportDoc.ParamByName('F_DOP_INFO').Value := NewDoc.Text;
       dsImportDoc.Active := true;
       nodeBody := NodeDocs.ChildNodes['DocBody'];
       spInsDocStr.ParamByName('f_doc_move').Value :=
