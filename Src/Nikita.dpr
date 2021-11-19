@@ -111,7 +111,8 @@ uses
   UQueueProc in 'UQueueProc.pas',
   UFrmMrkActions in 'UFrmMrkActions.pas' {FrmMrkActions},
   MoveDocumentServicesImpl1 in 'MoveDocumentServicesImpl1.pas',
-  UFrmListZakaz in 'UFrmListZakaz.pas' {FrmListZakaz};
+  UFrmListZakaz in 'UFrmListZakaz.pas' {FrmListZakaz},
+  UPluginManager in 'UPluginManager.pas';
 
 //  StringUtils in 'ShtrihDrv\StringUtils.pas';
 

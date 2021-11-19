@@ -962,6 +962,7 @@
             <Form>FrmListZakaz</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UPluginManager.pas"/>
         <None Include="master.xsd"/>
         <None Include="ModelSupport_Nikita\default.txaPackage"/>
         <None Include="ModelSupport_Nikita\default.txvpck"/>
