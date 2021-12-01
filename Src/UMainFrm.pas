@@ -10,7 +10,7 @@ uses
   dxSkinsDefaultPainters, dxSkinsdxRibbonPainter, cxClasses, dxRibbon,
   cxControls, dxSkinsdxBarPainter, dxStatusBar, dxRibbonStatusBar,
   dxDockControl, dxDockPanel, dxSkinsdxDockControlPainter, UFramBufer,
-  dxLayoutLookAndFeels, dxLayoutControl,Tabs,
+  dxLayoutLookAndFeels, dxLayoutControl, Tabs,
   DockTabSet, ComCtrls, dxSkinscxPCPainter, cxPC, frxExportRTF, frxExportXML,
   frxExportXLS, frxExportHTML, frxClass, frxExportPDF, frxBarcode, frxDesgn,
   frxFIBComponents, frxDCtrl, frxCross, dxBarExtItems, cxGraphics,
@@ -133,6 +133,7 @@ type
     frxPPTXExport1: TfrxPPTXExport;
     frxODTExport1: TfrxODTExport;
     frxBIFFExport1: TfrxBIFFExport;
+    Plugins: TMenuItem;
     procedure dxBarListItemGetData(Sender: TObject);
     procedure dxBarListItemClick(Sender: TObject);
     procedure N16Click(Sender: TObject);
@@ -154,7 +155,6 @@ var
 
 implementation
 
-
 {$R *.dfm}
 
 { TFrmMain }
@@ -163,21 +163,21 @@ uses
 
 procedure TFrmMain.dxBarListItemClick(Sender: TObject);
 begin
-with dxBarListItem do
-  TCustomForm(Items.Objects[ItemIndex]).Show;
+  with dxBarListItem do
+    TCustomForm(Items.Objects[ItemIndex]).Show;
 end;
 
 procedure TFrmMain.dxBarListItemGetData(Sender: TObject);
 begin
-with dxBarListItem do
-  ItemIndex := Items.IndexOfObject(ActiveMDIChild);
+  with dxBarListItem do
+    ItemIndex := Items.IndexOfObject(ActiveMDIChild);
 end;
 
 procedure TFrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 var
-  i : integer;
+  i: Integer;
 begin
-  for i:=0 to PageControl1.PageCount-1 do
+  for i := 0 to PageControl1.PageCount - 1 do
   begin
     PageControl1.Pages[0].Destroy;
   end;
@@ -185,21 +185,21 @@ end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 begin
-  TranslateForm(self,Language,TranslateFile);
+  TranslateForm(self, Language, TranslateFile);
 end;
 
 procedure TFrmMain.FramBufer1BtnMoveAllLeftClick(Sender: TObject);
 var
-  i         : integer;
-  recipient : TComponent;
+  i: Integer;
+  recipient: TComponent;
 begin
-  i:=FrmMain.PageControl1.ActivePageIndex;
-  if i>-1 then
+  i := FrmMain.PageControl1.ActivePageIndex;
+  if i > -1 then
   begin
-    recipient:=FrmMain.PageControl1.DockClients[i];
-{    showMessage(
-      FrmMain.PageControl1.DockClients[i].Name);}
-//    if recipient is TFrmMoveDoc then
+    recipient := FrmMain.PageControl1.DockClients[i];
+    { showMessage(
+      FrmMain.PageControl1.DockClients[i].Name); }
+    // if recipient is TFrmMoveDoc then
 
   end;
 end;
@@ -216,16 +216,16 @@ end;
 
 procedure TFrmMain.NGoodBuferClick(Sender: TObject);
 begin
-  if FramBufer1.LkpSklad.EditValue=null then
+  if FramBufer1.LkpSklad.EditValue = null then
   begin
-    dm.dsGetSysParam.Active:=false;
-    dm.dsGetSysParam.ParamByName('PARAM_NAME').Value:='DEFAULT_SKLAD';
-    dm.dsGetSysParam.Active:=true;
-    def_sklad:=dm.dsGetSysParam.FieldByName('PARAM_VALUE').AsInteger;
-    FramBufer1.LkpSklad.EditValue:=def_sklad;
-    FramBufer1.dsGoodBuffer.Active:=true;
+    dm.dsGetSysParam.Active := false;
+    dm.dsGetSysParam.ParamByName('PARAM_NAME').Value := 'DEFAULT_SKLAD';
+    dm.dsGetSysParam.Active := true;
+    def_sklad := dm.dsGetSysParam.FieldByName('PARAM_VALUE').AsInteger;
+    FramBufer1.LkpSklad.EditValue := def_sklad;
+    FramBufer1.dsGoodBuffer.Active := true;
   end;
-  panel.Visible:=not panel.Visible;
+  Panel.Visible := not Panel.Visible;
 end;
 
 end.

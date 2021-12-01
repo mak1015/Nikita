@@ -6,6 +6,8 @@ uses
   Forms,
   SysUtils,
   ShlObj,
+  Menus,
+  ActnList,
   UMainFrm in 'UMainFrm.pas' {FrmMain},
   UDocClass in 'UDocClass.pas',
   UInterfaces in 'UInterfaces.pas',
@@ -89,13 +91,13 @@ uses
   UFrmDocSpisan in 'UFrmDocSpisan.pas' {FrmDocSpisan},
   uDlgImportInputDoc in 'uDlgImportInputDoc.pas' {DlgImportInputDoc},
   UMy_types in 'UMy_types.pas' {,
-  DriverError in 'ShtrihDrv\DriverError.pas',
-  DriverTypes in 'ShtrihDrv\DriverTypes.pas',
-  DrvFRLib_TLB in 'ShtrihDrv\DrvFRLib_TLB.pas',
-  GlobalConst in 'ShtrihDrv\GlobalConst.pas',
-  LogFile in 'ShtrihDrv\LogFile.pas',
-  RegExpr in 'ShtrihDrv\RegExpr.pas',
-  SMDrvFR1CLib_TLB in 'ShtrihDrv\SMDrvFR1CLib_TLB.pas' {/  StringUtils in 'ShtrihDrv\StringUtils.pas';},
+    DriverError in 'ShtrihDrv\DriverError.pas',
+    DriverTypes in 'ShtrihDrv\DriverTypes.pas',
+    DrvFRLib_TLB in 'ShtrihDrv\DrvFRLib_TLB.pas',
+    GlobalConst in 'ShtrihDrv\GlobalConst.pas',
+    LogFile in 'ShtrihDrv\LogFile.pas',
+    RegExpr in 'ShtrihDrv\RegExpr.pas',
+    SMDrvFR1CLib_TLB in 'ShtrihDrv\SMDrvFR1CLib_TLB.pas' {/  StringUtils in 'ShtrihDrv\StringUtils.pas';},
   DriverError in 'ShtrihDrv\DriverError.pas',
   DriverTypes in 'ShtrihDrv\DriverTypes.pas',
   DrvFRLib_TLB in 'ShtrihDrv\DrvFRLib_TLB.pas',
@@ -112,21 +114,25 @@ uses
   UFrmMrkActions in 'UFrmMrkActions.pas' {FrmMrkActions},
   MoveDocumentServicesImpl1 in 'MoveDocumentServicesImpl1.pas',
   UFrmListZakaz in 'UFrmListZakaz.pas' {FrmListZakaz},
-  UPluginManager in 'UPluginManager.pas';
+  UPluginManager in 'UPluginManager.pas',
+  UPluginAPI in 'Plugins\API\Headers\UPluginAPI.pas',
+  Nikita_TLB in 'Nikita_TLB.pas';
 
-//  StringUtils in 'ShtrihDrv\StringUtils.pas';
+// StringUtils in 'ShtrihDrv\StringUtils.pas';
 
 {$R *.res}
-//{$R resource.res}
-
-
+// {$R resource.res}
+var
+  vl_index,vl_index2 : integer;
+  vl_actions : TArrayAct;
+  vl_MenuItem: TMenuItem;
 begin
-  Application.Initialize ;
+  Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Никита';
   Application.CreateForm(TDM, DM);
-  Prg_path:=ExtractFilePath(Application.ExeName);
-  app_data:=GetSpecialFolderPath(CSIDL_APPDATA)+'\Nikita';
+  Prg_path := ExtractFilePath(Application.ExeName);
+  app_data := GetSpecialFolderPath(CSIDL_APPDATA) + '\Nikita';
   if not directoryexists(app_data) then
   begin
     MkDir(app_data);
@@ -136,10 +142,28 @@ begin
   begin
     Application.CreateForm(TFrmMain, FrmMain);
     ClearLog;
+    Plugins.LoadPlugins(Prg_path + 'Plugins','.dll');
+    for vl_index := 0 to Plugins.FCount-1 do
+    begin
+      Plugins.FItems[vl_index].ConnectDB(DataBasePath,DM.pFIBDatabase.ConnectParams.UserName,
+        DM.pFIBDatabase.ConnectParams.Password);
+      vl_actions := Plugins.FItems[vl_index].GetActions;
+      for vl_index2 := 0 to Plugins.FItems[vl_index].FActCount - 1 do
+        begin
+          with FrmMain.MainMenu1.Items.Find('Дополнения') do
+          begin
+            vl_MenuItem := TMenuItem.Create(FrmMain.MainMenu1);
+            vl_MenuItem.Action := Plugins.FItems[vl_index].FActions[vl_index2];
+            Add(vl_MenuItem);
+          end;
+//          LogMsg(Plugins.FItems[vl_index].FActions[vl_index2].Caption);
+        end;
+    end;
     Application.Run;
   end
   else
   begin
+    Plugins.Destroy;
     DM.Free;
     Application.Terminate;
   end;

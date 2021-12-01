@@ -269,6 +269,9 @@ object FrmMain: TFrmMain
       Caption = #1058#1086#1074#1072#1088#1085#1099#1081' '#1073#1091#1092#1077#1088
       OnClick = NGoodBuferClick
     end
+    object Plugins: TMenuItem
+      Caption = #1044#1086#1087#1086#1083#1085#1077#1085#1080#1103
+    end
     object N16: TMenuItem
       Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
       OnClick = N16Click

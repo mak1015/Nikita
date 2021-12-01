@@ -374,7 +374,7 @@ begin
           end;
 
         end;
-        free;
+        Free;
       end;
   end;
 end;

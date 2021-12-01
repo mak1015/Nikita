@@ -554,11 +554,11 @@ function login: boolean;
 begin
   result := false;
 
-  try
-    dm.pFIBDatabase.Connected := true;
-    dm.pFIBDatabase.DefaultTransaction.Active := true;
-    result := true;
-  except
+//  try
+//    dm.pFIBDatabase.Connected := true;
+//    dm.pFIBDatabase.DefaultTransaction.Active := true;
+//    result := true;
+//  except
     with TPasswordDlg.Create(Application) do
     begin
       dm.pFIBDatabase.Connected := false;
@@ -588,7 +588,7 @@ begin
       end;
       free;
     end;
-  end;
+//  end;
 end;
 
 procedure ShowMoneyInJournal;

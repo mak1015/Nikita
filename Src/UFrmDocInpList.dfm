@@ -22,7 +22,7 @@ inherited FrmListInputDocs: TFrmListInputDocs
     ExplicitHeight = 500
     inherited RzToolbar: TRzToolbar
       Width = 1029
-      Height = 40
+      Height = 44
       RowHeight = 40
       ButtonLayout = blGlyphTop
       ButtonWidth = 60
@@ -32,7 +32,7 @@ inherited FrmListInputDocs: TFrmListInputDocs
       ParentShowHint = False
       Transparent = True
       ExplicitWidth = 1029
-      ExplicitHeight = 40
+      ExplicitHeight = 44
       ToolbarControls = (
         BtnNew
         BtnEdit
@@ -49,7 +49,6 @@ inherited FrmListInputDocs: TFrmListInputDocs
         BtnExit)
       inherited BtnNew: TRzToolButton
         Tag = 1
-        Top = 0
         Layout = blGlyphTop
         OnClick = BtnNewClick
         ExplicitWidth = 60
@@ -57,142 +56,120 @@ inherited FrmListInputDocs: TFrmListInputDocs
       end
       inherited BtnOpen: TRzToolButton
         Left = 225
-        Top = 0
         Layout = blGlyphTop
         Enabled = True
         OnClick = BtnOpenClick
         ExplicitLeft = 225
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnFind: TRzToolButton
         Left = 345
-        Top = 0
         Layout = blGlyphTop
         ExplicitLeft = 345
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnPrint: TRzToolButton
         Left = 405
-        Top = 0
         Width = 74
         Height = 40
         Layout = blGlyphTop
         ExplicitLeft = 405
-        ExplicitTop = 0
         ExplicitWidth = 74
         ExplicitHeight = 40
       end
       inherited BtnOK: TRzToolButton
         Left = 479
-        Top = 0
         Layout = blGlyphTop
         ExplicitLeft = 479
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnCancel: TRzToolButton
         Left = 539
-        Top = 0
         Layout = blGlyphTop
         ExplicitLeft = 539
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnRefresh: TRzToolButton
         Left = 285
-        Top = 0
         Layout = blGlyphTop
         Enabled = True
         OnClick = BtnRefreshClick
         ExplicitLeft = 285
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnEdit: TRzToolButton
         Left = 64
-        Top = 0
         Width = 87
         Height = 40
         Layout = blGlyphTop
         Enabled = True
         OnClick = BtnEditClick
         ExplicitLeft = 64
-        ExplicitTop = 0
         ExplicitWidth = 87
         ExplicitHeight = 40
       end
       inherited BtnExecute: TRzToolButton
         Left = 599
-        Top = 0
         Width = 64
         Height = 40
         Layout = blGlyphTop
         ExplicitLeft = 599
-        ExplicitTop = 0
         ExplicitWidth = 64
         ExplicitHeight = 40
       end
       inherited BtnDelete: TRzToolButton
         Left = 663
-        Top = 0
         Layout = blGlyphTop
         Enabled = True
         Visible = True
         ExplicitLeft = 663
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnSave: TRzToolButton
         Left = 723
-        Top = 0
         Width = 63
         Height = 40
         Layout = blGlyphTop
         Visible = True
         ExplicitLeft = 723
-        ExplicitTop = 0
         ExplicitWidth = 63
         ExplicitHeight = 40
       end
       inherited BtnExit: TRzToolButton
         Left = 786
-        Top = 0
         Layout = blGlyphTop
         ExplicitLeft = 786
-        ExplicitTop = 0
         ExplicitWidth = 60
         ExplicitHeight = 40
       end
       inherited BtnView: TRzToolButton
         Left = 151
-        Top = 0
         Width = 74
         Height = 40
         Layout = blGlyphTop
         Enabled = True
         OnClick = BtnViewClick
         ExplicitLeft = 151
-        ExplicitTop = 0
         ExplicitWidth = 74
         ExplicitHeight = 40
       end
     end
     object cxGrid1: TcxGrid
       Left = 1
-      Top = 70
+      Top = 74
       Width = 1029
-      Height = 429
+      Height = 425
       Align = alClient
       TabOrder = 1
       LookAndFeel.SkinName = 'MoneyTwins'
+      ExplicitTop = 70
+      ExplicitHeight = 429
       object cxGrid1DBTableView1: TcxGridDBTableView
         OnDblClick = BtnEditClick
         Navigator.Buttons.CustomButtons = <>
@@ -281,7 +258,7 @@ inherited FrmListInputDocs: TFrmListInputDocs
     end
     object ToolBar1: TToolBar
       Left = 1
-      Top = 41
+      Top = 45
       Width = 1029
       Height = 29
       Caption = 'ToolBar1'
@@ -289,6 +266,7 @@ inherited FrmListInputDocs: TFrmListInputDocs
       GradientEndColor = clWhite
       GradientStartColor = clGradientActiveCaption
       TabOrder = 2
+      ExplicitTop = 41
       object Editstr_date: TDateTimePicker
         Left = 0
         Top = 0
