@@ -15,7 +15,8 @@ uses
   System.Classes,
   VCL.Dialogs,
   UPluginAPI in '..\Src\Plugins\API\Headers\UPluginAPI.pas',
-  UDm in 'UDm.pas' {DM: TDataModule};
+  UDm in 'UDm.pas' {DM: TDataModule},
+  UObjects in 'UObjects.pas';
 
 {$R *.res}
 
@@ -61,7 +62,6 @@ begin
     try
       dm.pFIBDatabase.Connected := true;
       dm.pFIBDatabase.DefaultTransaction.Active := true;
-      ShowMessage('Oook');
     finally
 
     end;
@@ -109,6 +109,11 @@ end;
 function TPlugin.RunAct(p_Act: IAct): WideString;
 begin
   //FApi.SendMsg(p_Act);
+  if p_Act.FActName = 'MoveDocSync' then
+  begin
+
+  end;
+
   result := p_act.FActCaption;
 end;
 

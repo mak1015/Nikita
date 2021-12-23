@@ -11,6 +11,39 @@ type
     FPeriod_sec : integer;
   end;
 
+  RActor = record
+    FActorId : WideString;
+    FActorName : WideString;
+  end;
+
+  RDate = record
+    Fday : integer;
+    FMonth : integer;
+    FYear : integer;
+  end;
+
+  RDocString = record
+    FGood : WideString;
+    FCount : integer;
+    FPriceVal : Currency;
+    FPriceSrc : Currency;
+  end;
+
+  TArrayGoods = array of RDocString;
+
+  RDocHead = record
+    FDcoId   : WideString;
+    FDocNumber : WideString;
+    FDocDate : WideString;
+    FDocType : WideString;
+    FDocState : WideString;
+    FDocSum : Currency;
+    FDocCount : Integer;
+    FSender : RActor;
+    FRecipient : RActor;
+  end;
+
+
   TArrayAct = array of IAct;
 
   INApi = interface
@@ -24,6 +57,28 @@ type
     function GetActList : TArrayAct;
     function RunAct(p_Act : IAct) : WideString;
     function ConnectBase(p_ConString,p_User,p_Passwd : WideString) :WideString;
+  end;
+  ///  <summary>
+  ///  Документ движения товара
+  ///  </summary>
+
+  IDocument = interface
+  ['{519EE63C-A44D-4CBF-BDA8-2309FD188823}']
+    function GetDocHead : RDocHead;
+    procedure SetDocHead(p_DocHead : RdocHead);
+    property F_docHead : RDocHead read GetDochead write SetDocHead;
+    function GetStrings : TArrayGoods;
+    procedure SetStrings (p_Strings : TArrayGoods);
+    property F_docStrings : TArrayGoods read GetStrings write SetStrings;
+    procedure GetDocument(p_id : integer);
+    function SetDocument : boolean;
+  end;
+
+  TArrayDocs = array of IDocument;
+
+  IDocJournal = interface
+    ['{D39FDC2E-8C7C-425E-ACC7-71554FB95DE5}']
+    function GetList(p_start, p_end: RDate) : TArrayDocs;
   end;
 
   TInitPluginFunc = function(const ACore: INApi): INPlugin; safecall;
