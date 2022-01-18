@@ -36,6 +36,24 @@ type
     dsGetDocF_USER: TFIBStringField;
     dsGetDocF_TYPE_NAME: TFIBStringField;
     dsGetDocF_GUID: TFIBStringField;
+    dsGetDocStrings: TpFIBDataSet;
+    dsGetDocStringsF_ID: TFIBBCDField;
+    dsGetDocStringsF_DOC_MOVE: TFIBBCDField;
+    dsGetDocStringsF_GOOD_NAME: TFIBStringField;
+    dsGetDocStringsF_GOOD_DOP_INFO: TFIBStringField;
+    dsGetDocStringsF_SCANCODE: TFIBStringField;
+    dsGetDocStringsF_ED_IZM_SHORT_NAME: TFIBStringField;
+    dsGetDocStringsF_ED_IZM_NAME: TFIBStringField;
+    dsGetDocStringsF_ARTICLE: TFIBStringField;
+    dsGetDocStringsF_GOOD: TFIBBCDField;
+    dsGetDocStringsF_PRICE: TFIBBCDField;
+    dsGetDocStringsF_CNT: TFIBBCDField;
+    dsGetDocStringsF_PRICE_VAL: TFIBBCDField;
+    dsGetDocStringsF_SUM: TFIBFloatField;
+    dsGetDocStringsF_SKLAD_OST: TFIBFloatField;
+    dsGetDocStringsF_SKLAD_TO_OST: TFIBFloatField;
+    dsGetDocStringsF_GOOD_GRP_COLOR: TFIBStringField;
+    dsGetDocStringsF_DESCR: TFIBStringField;
   private
     { Private declarations }
   public

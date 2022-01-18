@@ -171,7 +171,6 @@ object FrmPrototype: TFrmPrototype
         Hint = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
         DisabledIndex = 17
         ImageIndex = 16
-        Images = DM.ImageList
         Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
         Enabled = False
         ParentShowHint = False

@@ -16,6 +16,14 @@ type
     FActorName : WideString;
   end;
 
+  RGood = record
+    FGoodId : integer;
+    FGoodUID : WideString;
+    FGoodArticle : WideString;
+    FGoodName : WideString;
+    FGoodInfo : WideString;
+  end;
+
   RDate = record
     Fday : integer;
     FMonth : integer;
@@ -23,22 +31,29 @@ type
   end;
 
   RDocString = record
-    FGood : WideString;
+    FGood : RGood;
     FCount : integer;
     FPriceVal : Currency;
     FPriceSrc : Currency;
   end;
 
+  RResult = record
+    Fresult : integer;
+    FMessage : WideString;
+  end;
+
   TArrayGoods = array of RDocString;
 
   RDocHead = record
-    FDcoId   : WideString;
+    FDocId   : integer;
+    FDocUid   : WideString;
     FDocNumber : WideString;
     FDocDate : WideString;
     FDocType : WideString;
     FDocState : WideString;
     FDocSum : Currency;
     FDocCount : Integer;
+    FDocInfo : WideString;
     FSender : RActor;
     FRecipient : RActor;
   end;

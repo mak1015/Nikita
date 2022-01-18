@@ -16,7 +16,8 @@ uses
   VCL.Dialogs,
   UPluginAPI in '..\Src\Plugins\API\Headers\UPluginAPI.pas',
   UDm in 'UDm.pas' {DM: TDataModule},
-  UObjects in 'UObjects.pas';
+  UObjects in 'UObjects.pas',
+  UMoveDocumentServicesImpl in 'MoveDocumentServicesImpl.pas';
 
 {$R *.res}
 
@@ -107,13 +108,27 @@ begin
 end;
 
 function TPlugin.RunAct(p_Act: IAct): WideString;
+var
+  vl_result : RResult;
 begin
   //FApi.SendMsg(p_Act);
   if p_Act.FActName = 'MoveDocSync' then
   begin
-
+    with TMoveDocJournal.Create do
+    begin
+      vl_result := GetDocsFromService;
+      Result := vl_result.FMessage;
+      free;
+    end;
   end;
-
+  if p_Act.FActName = 'MoveDocJournal' then
+  begin
+    with TMoveDocJournal.Create do
+    begin
+      ShowJournal;
+      free;
+    end;
+  end;
   result := p_act.FActCaption;
 end;
 
