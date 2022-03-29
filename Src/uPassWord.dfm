@@ -3,8 +3,8 @@ object PasswordDlg: TPasswordDlg
   Top = 108
   BorderStyle = bsDialog
   Caption = 'Password Dialog'
-  ClientHeight = 218
-  ClientWidth = 237
+  ClientHeight = 222
+  ClientWidth = 236
   Color = clBtnFace
   ParentFont = True
   OldCreateOrder = True
@@ -82,7 +82,7 @@ object PasswordDlg: TPasswordDlg
     Left = 5
     Top = -1
     Width = 221
-    Height = 65
+    Height = 42
     Caption = #1050#1050#1052
     TabOrder = 5
   end
@@ -97,9 +97,9 @@ object PasswordDlg: TPasswordDlg
     TabStop = True
   end
   object Strih: TRadioButton
-    Left = 8
-    Top = 39
-    Width = 113
+    Left = 127
+    Top = 16
+    Width = 90
     Height = 17
     Caption = #1064#1090#1088#1080#1093'-'#1052
     TabOrder = 7
@@ -111,6 +111,16 @@ object PasswordDlg: TPasswordDlg
     Height = 21
     Style = csDropDownList
     TabOrder = 8
+  end
+  object cxShellComboBox: TcxShellComboBox
+    Left = 8
+    Top = 48
+    Enabled = False
+    Properties.ShowFullPath = sfpAlways
+    Properties.ViewOptions = []
+    TabOrder = 9
+    OnDblClick = cxShellComboBoxDblClick
+    Width = 218
   end
   object cxPropertiesStore: TcxPropertiesStore
     Components = <

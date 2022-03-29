@@ -3,7 +3,6 @@ object DM: TDM
   Height = 458
   Width = 724
   object pFIBDatabase: TpFIBDatabase
-    Connected = True
     DBName = '192.168.0.201/3050:nbase_dev'
     DBParams.Strings = (
       'user_name=SYSDBA'
@@ -20,14 +19,13 @@ object DM: TDM
     Top = 8
   end
   object pFIBTransaction: TpFIBTransaction
-    Active = True
     DefaultDatabase = pFIBDatabase
     Left = 128
     Top = 16
   end
   object dsGetDoc: TpFIBDataSet
     UpdateSQL.Strings = (
-      'execute procedure SP_T_DOC_MOVE_U(:F_DOC_MOVE,'
+      'execute procedure SP_T_DOC_MOVE_U(:F_ID,'
       '  :F_DATE,'
       '  :F_NUMBER,'
       '  :F_SKLAD_FROM,'
@@ -40,8 +38,7 @@ object DM: TDM
       '  :F_DOP_INFO)'
       '')
     SelectSQL.Strings = (
-      'select * from SP_T_DOC_MOVE_GET(4)')
-    Active = True
+      'select * from SP_T_DOC_MOVE_GET(:P_DOC_ID)')
     Transaction = pFIBTransaction
     Database = pFIBDatabase
     Left = 24
@@ -258,5 +255,190 @@ object DM: TDM
       Size = 255
       EmptyStrToNull = True
     end
+  end
+  object HTTPRIO1: THTTPRIO
+    HTTPWebNode.UseUTF8InHeader = True
+    HTTPWebNode.InvokeOptions = [soIgnoreInvalidCerts, soAutoCheckAccessPointViaUDDI]
+    HTTPWebNode.WebNodeOptions = []
+    Converter.Options = [soSendMultiRefObj, soTryAllSchema, soRootRefNodesToBody, soCacheMimeResponse, soUTF8EncodeXML]
+    Left = 440
+    Top = 184
+  end
+  object dsSQL: TpFIBDataSet
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 80
+    Top = 112
+  end
+  object dsSklad: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select * from SP_T_NSI_SKLAD_GET(:P_ID)')
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 312
+    Top = 224
+    object dsSkladF_ID: TFIBBCDField
+      FieldName = 'F_ID'
+      Size = 0
+    end
+    object dsSkladF_NAME: TFIBStringField
+      FieldName = 'F_NAME'
+      Size = 60
+      EmptyStrToNull = True
+    end
+    object dsSkladF_ADDRES: TFIBStringField
+      FieldName = 'F_ADDRES'
+      Size = 255
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER: TFIBBCDField
+      FieldName = 'F_PARTNER'
+      Size = 0
+    end
+    object dsSkladF_PARTNER_NAME: TFIBStringField
+      FieldName = 'F_PARTNER_NAME'
+      Size = 60
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_INN: TFIBStringField
+      FieldName = 'F_PARTNER_INN'
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_KPP: TFIBStringField
+      FieldName = 'F_PARTNER_KPP'
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_ADRES: TFIBStringField
+      FieldName = 'F_PARTNER_ADRES'
+      Size = 255
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_BANK: TFIBStringField
+      FieldName = 'F_PARTNER_BANK'
+      Size = 255
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_BANK_ADRES: TFIBStringField
+      FieldName = 'F_PARTNER_BANK_ADRES'
+      Size = 255
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_BANK_RSCH: TFIBStringField
+      FieldName = 'F_PARTNER_BANK_RSCH'
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_BANK_KSCH: TFIBStringField
+      FieldName = 'F_PARTNER_BANK_KSCH'
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_BANK_BIK: TFIBStringField
+      FieldName = 'F_PARTNER_BANK_BIK'
+      EmptyStrToNull = True
+    end
+    object dsSkladF_XML: TFIBStringField
+      FieldName = 'F_XML'
+      Size = 10000
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PRICE_IN: TFIBBCDField
+      FieldName = 'F_PRICE_IN'
+      Size = 0
+    end
+    object dsSkladF_PRICE_OUT: TFIBBCDField
+      FieldName = 'F_PRICE_OUT'
+      Size = 0
+    end
+    object dsSkladF_PRICE_IN_NAME: TFIBStringField
+      FieldName = 'F_PRICE_IN_NAME'
+      Size = 60
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PRICE_OUT_NAME: TFIBStringField
+      FieldName = 'F_PRICE_OUT_NAME'
+      Size = 60
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PARTNER_ROZN: TFIBBCDField
+      FieldName = 'F_PARTNER_ROZN'
+      Size = 0
+    end
+    object dsSkladF_PARTNER_ROZN_NAME: TFIBStringField
+      FieldName = 'F_PARTNER_ROZN_NAME'
+      Size = 255
+      EmptyStrToNull = True
+    end
+    object dsSkladF_PREFIX: TFIBStringField
+      FieldName = 'F_PREFIX'
+      Size = 2
+      EmptyStrToNull = True
+    end
+  end
+  object dsGetDocGUID: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select * from SP_T_DOC_OUT_GET_BY_GUID(:p_guid,'#39'T_DOC_MOVE'#39')')
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 312
+    Top = 352
+  end
+  object dsImportSklad: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select * from SP_IMPORT_NSI_SKLAD(:P_CODE,:P_NAME)')
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 312
+    Top = 288
+  end
+  object dsImportGood: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT'
+      '    F_GOOD_ID'
+      'FROM'
+      '    SP_IMPORT_NSI_GOOD(:F_ID,'
+      '    :F_NAME,'
+      '    :F_ARTICLE,'
+      '    :F_PARTNER,'
+      '    :F_EXT_BASE,'
+      '    :F_DOP_INFO,'
+      '    :F_BARTER,'
+      '    :F_PICTURE_NAME,'
+      '    :F_DOC_TYPE,'
+      '    :F_UPDATE_GOOD_NAME) ')
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 408
+    Top = 296
+  end
+  object dsImportScancode: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT'
+      '    F_RESULT'
+      'FROM'
+      '    SP_IMPORT_NSI_SCANCODE(:F_GOOD,'
+      '    :F_SCANCODE) ')
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    Left = 408
+    Top = 352
+  end
+  object spInsDocStr: TpFIBStoredProc
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    SQL.Strings = (
+      
+        'EXECUTE PROCEDURE SP_T_DOC_MOVE_STR_I (?F_ID, ?F_DOC_MOVE, ?F_GO' +
+        'OD, ?F_PRICE, ?F_CNT, ?F_PRICE_VAL, ?F_DESCR)')
+    StoredProcName = 'SP_T_DOC_MOVE_STR_I'
+    Left = 528
+    Top = 352
+  end
+  object spChangeState: TpFIBStoredProc
+    Transaction = pFIBTransaction
+    Database = pFIBDatabase
+    SQL.Strings = (
+      'EXECUTE PROCEDURE PR_T_DOC_MOVE_CH_STATE (?P_ID, ?P_STATE)')
+    StoredProcName = 'PR_T_DOC_MOVE_CH_STATE'
+    Left = 528
+    Top = 288
   end
 end

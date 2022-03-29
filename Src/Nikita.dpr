@@ -142,11 +142,12 @@ begin
   begin
     Application.CreateForm(TFrmMain, FrmMain);
     ClearLog;
-    Plugins.LoadPlugins(Prg_path + 'Plugins','.dll');
+    Plugins.LoadPlugins(PluginPath,'.dll');
     for vl_index := 0 to Plugins.FCount-1 do
     begin
+     // LogMsg('Загрузка расширения '+Plugins.FItems[vl_index].);
       Plugins.FItems[vl_index].ConnectDB(DataBasePath,DM.pFIBDatabase.ConnectParams.UserName,
-        DM.pFIBDatabase.ConnectParams.Password);
+        DM.pFIBDatabase.ConnectParams.Password,DM.pFIBDatabase.LibraryName);
       vl_actions := Plugins.FItems[vl_index].GetActions;
       for vl_index2 := 0 to Plugins.FItems[vl_index].FActCount - 1 do
         begin

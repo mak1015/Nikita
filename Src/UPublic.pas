@@ -79,6 +79,7 @@ var
   def_sklad: integer;
   kkm: TKkm;
   app_data: String;
+  PluginPath : string;
 
 const
   CheckCount = 1;
@@ -569,6 +570,7 @@ begin
         DataBasePath := EdBase.Text;
         dm.pFIBDatabase.ConnectParams.UserName := EdUser.Text;
         Language := LangSelect.Text;
+        PluginPath := cxShellComboBox.AbsolutePath;
         // dm.pFIBDatabase.ConnectParams.RoleName:=EdRole.Text;
         dm.pFIBDatabase.ConnectParams.Password := Password.Text;
         try

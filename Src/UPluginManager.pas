@@ -47,13 +47,15 @@ type
     destructor Destroy;
     function GetActions: TArrayAct;
     function RunAct(p_act: IAct): WideString;
-    procedure ConnectDB(p_conString,p_user,p_passwd : WideString);
+    procedure ConnectDB(p_conString,p_user,p_passwd : WideString; p_lib :WideString);
+
   end;
 
   TApi = class(TInterfacedObject, INApi)
   public
     FItems: array of TPlugin;
     Fcount: integer;
+
     function SendMsg(p_Message: WideString): WideString;
     procedure LoadPlugins(const AFolder, AFileExt: String);
   private
@@ -66,7 +68,7 @@ function Plugins: TApi;
 implementation
 
 uses
-  UMainFrm;
+  UMainFrm,uPublic,uDm;
 
 resourcestring
   rsPluginsLoadError = 'One or more plugins has failed to load:' +
@@ -75,6 +77,7 @@ resourcestring
 var
   FApi: TApi;
   { TApi }
+
 
 function TApi.LoadPlugin(p_File: WideString): TPlugin;
 begin
@@ -141,6 +144,8 @@ begin
   end;
 end;
 
+
+
 function TApi.SendMsg(p_Message: WideString): WideString;
 begin
   ShowMessage(p_Message);
@@ -153,9 +158,9 @@ end;
 
 { TPlugin }
 
-procedure TPlugin.ConnectDB(p_conString, p_user, p_passwd: WideString);
+procedure TPlugin.ConnectDB(p_conString, p_user, p_passwd: WideString; p_lib :WideString);
 begin
-  self.FImpPlugin.ConnectBase(p_conString,p_user,p_passwd);
+  self.FImpPlugin.ConnectBase(p_conString,p_user,p_passwd,p_lib);
 end;
 
 constructor TPlugin.Create(const p_FileName: WideString; p_API: INApi);
@@ -165,9 +170,13 @@ begin
   inherited Create;
   FApi := p_API;
   FFileName := p_FileName;
+  LogMsg('Загрузка расширения '+p_FileNAme);
   FHandle := SafeLoadLibrary(p_FileName);
+  LogMsg('Расширение загружено');
   v_initFunc := GetProcAddress(FHandle, SPluginInitFuncName);
+  LogMsg('Функция инициализации получена');
   FImpPlugin := v_initFunc(p_API);
+  LogMsg('Инициализация прошла');
   Win32Check(FHandle <> 0);
 end;
 
@@ -195,6 +204,7 @@ begin
   end;
 
 end;
+
 
 function TPlugin.RunAct(p_act: IAct): WideString;
 begin

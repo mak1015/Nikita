@@ -11,9 +11,18 @@ type
     FPeriod_sec : integer;
   end;
 
+
   RActor = record
     FActorId : WideString;
+    FActorFullName : WideString;
+    FActorAdress  : WideString;
     FActorName : WideString;
+  end;
+
+  RSklad = record
+    FId     : integer;
+    FPrefix : WideString;
+    FName : WideString;
   end;
 
   RGood = record
@@ -22,6 +31,7 @@ type
     FGoodArticle : WideString;
     FGoodName : WideString;
     FGoodInfo : WideString;
+    FScancodes : Array of WideString;
   end;
 
   RDate = record
@@ -42,20 +52,29 @@ type
     FMessage : WideString;
   end;
 
-  TArrayGoods = array of RDocString;
+  RDocState = record
+    FCode : integer;
+    FName : WideString;
+  end;
 
+  TArrayGoods = array of RDocString;
+ ///  <summary>
+ ///  Заголовок товарного документа
+ ///  </summary>
   RDocHead = record
     FDocId   : integer;
     FDocUid   : WideString;
     FDocNumber : WideString;
-    FDocDate : WideString;
+    FDocDate : RDate;
     FDocType : WideString;
-    FDocState : WideString;
+    FDocState : RDocState;
     FDocSum : Currency;
     FDocCount : Integer;
     FDocInfo : WideString;
     FSender : RActor;
     FRecipient : RActor;
+    FSkladFrom : RSklad;
+    FSkladTo : RSklad;
   end;
 
 
@@ -71,7 +90,7 @@ type
     procedure Init(p_API : INApi);
     function GetActList : TArrayAct;
     function RunAct(p_Act : IAct) : WideString;
-    function ConnectBase(p_ConString,p_User,p_Passwd : WideString) :WideString;
+    function ConnectBase(p_ConString,p_User,p_Passwd,p_lib : WideString) :WideString;
   end;
   ///  <summary>
   ///  Документ движения товара
@@ -87,6 +106,9 @@ type
     property F_docStrings : TArrayGoods read GetStrings write SetStrings;
     procedure GetDocument(p_id : integer);
     function SetDocument : boolean;
+    function GetDocState : RDocState;
+    procedure SetDocState (p_doc_State : RDocState);
+    property F_DocState : RDocState read GetDocState write SetDocState;
   end;
 
   TArrayDocs = array of IDocument;
